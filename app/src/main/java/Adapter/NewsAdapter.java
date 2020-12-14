@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.retrofit.R;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.article;
@@ -23,12 +24,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsListHolder
 
     private Context context;
     private ArrayList<article> articles;
+    private article particularArticle;
 
     private onNewsClicked listener;
 
     public NewsAdapter(Context context, ArrayList<article> articles){
         this.context = context;
         this.articles = articles;
+    }
+    public NewsAdapter(Context context,article particularArticle){
+        this.context = context;
+        this.particularArticle = particularArticle;
     }
 
     public void setListener(onNewsClicked listener){

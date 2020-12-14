@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.ProgressBar;
 
@@ -20,9 +22,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements NewsCategoryAdapter.CategoryClickListener {
+public class MainActivity extends AppCompatActivity implements NewsCategoryAdapter.CategoryClickListener,NewsAdapter.onNewsClicked {
 
     private final static String APIKEY = "9a27fad88cf4493aa0398c10b736da22";
+    public static String KEY = "NEWS";
 
     private RecyclerView mRcNewsCategories;
     private RecyclerView mRcNews;
@@ -109,5 +112,15 @@ public class MainActivity extends AppCompatActivity implements NewsCategoryAdapt
     @Override
     public void onCategoryClicked(String category) {
         onCategorynews(category);
+    }
+
+    @Override
+    public void newsClicked(article particularArticle) {
+        NewsAdapter adapter = new NewsAdapter(this,particularArticle);
+        adapter.setListener(this);
+        Intent news = new Intent(MainActivity.this,ViewNews.class);
+        news.putExtra(KEY,particularArticle);
+        startActivity(news);
+        finish();
     }
 }

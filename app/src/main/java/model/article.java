@@ -4,7 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
 
-public class article {
+import java.io.Serializable;
+
+public class article  implements Serializable {
     @SerializedName("author")
     public String author;
     @SerializedName("title")
