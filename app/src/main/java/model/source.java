@@ -4,7 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
 
-public class source {
+import java.io.Serializable;
+
+public class source implements Serializable {
     @SerializedName("id")
     public String id;
 

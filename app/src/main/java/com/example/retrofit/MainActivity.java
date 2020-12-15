@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements NewsCategoryAdapt
 
     private void setDataToRecycler(ArrayList<article> articles){
         NewsAdapter newsAdapter = new NewsAdapter(MainActivity.this,articles);
+        newsAdapter.setListener(this);
         mRcNews.setAdapter(newsAdapter);
     }
 
@@ -116,8 +117,6 @@ public class MainActivity extends AppCompatActivity implements NewsCategoryAdapt
 
     @Override
     public void newsClicked(article particularArticle) {
-        NewsAdapter adapter = new NewsAdapter(this,particularArticle);
-        adapter.setListener(this);
         Intent news = new Intent(MainActivity.this,ViewNews.class);
         news.putExtra(KEY,particularArticle);
         startActivity(news);

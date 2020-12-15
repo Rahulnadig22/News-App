@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Retrofit</string>
+    <string name="todo">TODO</string>
     <string-array name="news_category">
         <item>business</item>
         <item>entertainment</item>

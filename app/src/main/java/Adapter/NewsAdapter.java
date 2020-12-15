@@ -24,17 +24,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsListHolder
 
     private Context context;
     private ArrayList<article> articles;
-    private article particularArticle;
 
     private onNewsClicked listener;
 
     public NewsAdapter(Context context, ArrayList<article> articles){
         this.context = context;
         this.articles = articles;
-    }
-    public NewsAdapter(Context context,article particularArticle){
-        this.context = context;
-        this.particularArticle = particularArticle;
     }
 
     public void setListener(onNewsClicked listener){
@@ -51,7 +46,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsListHolder
     public void onBindViewHolder(@NonNull NewsListHolder holder, int position) {
         article item = articles.get(position);
         if(item!=null){
-            Glide.with(context).load(item.urlToimage).into(holder.mIvNewsImg);
+            Glide.with(context).load(item.urlToimage).placeholder(R.drawable.ic_launcher_background).into(holder.mIvNewsImg);
             holder.mTvNewsTitle.setText(item.title);
             holder.mTvNewsDescription.setText(item.description);
         }

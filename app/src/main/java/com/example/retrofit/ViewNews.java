@@ -32,7 +32,7 @@ public class ViewNews extends AppCompatActivity {
         mAuthor.setText(particularArticle.author);
         mDescription.setText(particularArticle.description);
         mUrl.setText(particularArticle.url);
-        Glide.with(ViewNews.this).load(particularArticle.urlToimage).into(mUrlToImage);
+        Glide.with(ViewNews.this).load(particularArticle.urlToimage).placeholder(R.drawable.ic_launcher_background).into(mUrlToImage);
         mPublishedAt.setText(particularArticle.publishedAt);
         mContent.setText(particularArticle.content);
 
