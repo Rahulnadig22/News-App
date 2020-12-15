@@ -15,15 +15,14 @@ import com.bumptech.glide.Glide;
 import com.example.retrofit.R;
 
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.article;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsListHolder> {
 
-    private Context context;
-    private ArrayList<article> articles;
+    private final Context context;
+    private final ArrayList<article> articles;
 
     private onNewsClicked listener;
 
@@ -39,7 +38,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsListHolder
     @NonNull
     @Override
     public NewsListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new NewsListHolder(LayoutInflater.from(context).inflate(R.layout.cell_news,parent,false));
+        return new NewsListHolder(LayoutInflater.from(context).inflate(R.layout.cell_news, parent, false));
     }
 
     @Override
@@ -50,12 +49,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsListHolder
             holder.mTvNewsTitle.setText(item.title);
             holder.mTvNewsDescription.setText(item.description);
         }
-        holder.mllnews.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(listener!=null){
-                    listener.newsClicked(articles.get(position));
-                }
+        holder.mllnews.setOnClickListener(v -> {
+            if(listener!=null){
+                listener.newsClicked(articles.get(position));
             }
         });
 
@@ -66,12 +62,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsListHolder
         return articles.size();
     }
 
-    class NewsListHolder extends RecyclerView.ViewHolder{
-        private ImageView mIvNewsImg;
-        private TextView mTvNewsTitle;
-        private TextView mTvNewsDescription;
+    static class NewsListHolder extends RecyclerView.ViewHolder{
+        private final ImageView mIvNewsImg;
+        private final TextView mTvNewsTitle;
+        private final TextView mTvNewsDescription;
 
-        private LinearLayout mllnews;
+        private final LinearLayout mllnews;
         public NewsListHolder(@NonNull View itemView) {
             super(itemView);
             mIvNewsImg = itemView.findViewById(R.id.iv_news_image);

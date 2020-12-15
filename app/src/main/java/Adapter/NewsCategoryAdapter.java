@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.retrofit.R;
 
 public class NewsCategoryAdapter extends RecyclerView.Adapter<NewsCategoryAdapter.NewsCategoryHolder> {
-    private Context context;
-    private String[] categoryNames;
+    private final Context context;
+    private final String[] categoryNames;
     private int selectedPosition = -1;
     private CategoryClickListener listener;
 
@@ -31,7 +31,7 @@ public class NewsCategoryAdapter extends RecyclerView.Adapter<NewsCategoryAdapte
     @NonNull
     @Override
     public NewsCategoryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new NewsCategoryHolder(LayoutInflater.from(context).inflate(R.layout.cell_category,parent,false));
+        return new NewsCategoryHolder(LayoutInflater.from(context).inflate(R.layout.cell_category, parent, false));
     }
 
     @Override
@@ -45,14 +45,11 @@ public class NewsCategoryAdapter extends RecyclerView.Adapter<NewsCategoryAdapte
             holder.mTextView.setTextColor(ResourcesCompat.getColor(context.getResources(),R.color.black,null));
         }
 
-        holder.mLlRoot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedPosition = position;
-                notifyDataSetChanged();
-                if(listener!=null){
-                    listener.onCategoryClicked(categoryNames[position]);
-                }
+        holder.mLlRoot.setOnClickListener(v -> {
+            selectedPosition = position;
+            notifyDataSetChanged();
+            if(listener!=null){
+                listener.onCategoryClicked(categoryNames[position]);
             }
         });
     }
@@ -62,9 +59,9 @@ public class NewsCategoryAdapter extends RecyclerView.Adapter<NewsCategoryAdapte
         return categoryNames.length;
     }
 
-    class NewsCategoryHolder extends RecyclerView.ViewHolder {
-        private LinearLayout mLlRoot;
-        private TextView mTextView;
+    static class NewsCategoryHolder extends RecyclerView.ViewHolder {
+        private final LinearLayout mLlRoot;
+        private final TextView mTextView;
         public NewsCategoryHolder(@NonNull View itemView) {
             super(itemView);
             mLlRoot = itemView.findViewById(R.id.ll_root_category);
